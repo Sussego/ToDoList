@@ -39,10 +39,22 @@ input {
   color: #333;
 }
 
-button {
+button.Add {
   padding: 10px 15px;
   margin-top: 10px;
   background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button {
+  padding: 10px 15px;
+  margin-top: 10px;
+  margin-right: 10px;
+  background-color: #bebebe;
   color: white;
   border: none;
   border-radius: 5px;
