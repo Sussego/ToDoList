@@ -1,5 +1,6 @@
 import { useState, useEffect, use } from "react";
 import './App.css';
+import "font-awesome/css/font-awesome.min.css";
 
 function App() {
   const [tarefas,setTarefas] = useState(()=>{
@@ -9,6 +10,7 @@ function App() {
   
   const [novaTarefa, setNovaTarefa] = useState("");
   const [filtro, setFiltro] = useState("Todas");
+  const [modoApagar, setModoApagar] = useState(false);
 
   useEffect(()=>{
     localStorage.setItem("tarefas", JSON.stringify(tarefas));
@@ -54,23 +56,50 @@ function App() {
       </div>
 
       <div>
-        <button onClick={()=>setFiltro("Todas")}>Todas</button>
-        <button onClick={()=>setFiltro("Pendentes")}>Pendentes</button> 
-        <button onClick={()=>setFiltro("Concluidas")}>Concluídas</button>
+      <button
+        onClick={() => setFiltro("Todas")}
+        className={filtro === "Todas" ? "filtro-selecionado" : "filtro"}>Todas</button>
+
+      <button
+        onClick={() => setFiltro("Pendentes")}
+        className={filtro === "Pendentes" ? "filtro-selecionado" : "filtro"}>Pendentes</button>
+
+      <button
+        onClick={() => setFiltro("Concluidas")}
+        className={filtro === "Concluidas" ? "filtro-selecionado" : "filtro"}>Concluídas</button>
+
+      <button
+        class="btnApagar"
+        onClick={() => setModoApagar(!modoApagar)}
+        style={{
+          backgroundColor: modoApagar ? "#d32f2f" : "#bebebe",
+          color: "white",
+          border: "none",
+          borderRadius: "50%",
+          padding: "10px",
+          cursor: "pointer",
+          fontSize: "20px",
+        }}>
+        <i className="fa fa-trash"></i>
+      </button>
       </div>
 
-        <ul>
-          {tarefasFiltradas.map((tarefa, index)=> (
-            <li
-              key={index}
-              onClick={()=>marcarConcluida(index)}
-              style={{cursor:'pointer', 
-                textDecoration:tarefa.concluida ? "line-through" : "none", 
-                color: tarefa.concluida ? "#888" : "#000"}}>
-              {tarefa.texto}
-            </li>
-          ))}
-        </ul>
+      <div>
+      
+      </div>
+
+      <ul>
+        {tarefasFiltradas.map((tarefa, index)=> (
+          <li
+            key={index}
+            onClick={()=>modoApagar ? removerTarefa(index) : marcarConcluida(index)}
+            style={{cursor:'pointer', 
+              textDecoration:tarefa.concluida ? "line-through" : "none", 
+              color: tarefa.concluida ? "#888" : "#000"}}>
+            {tarefa.texto}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

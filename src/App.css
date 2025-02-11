@@ -38,7 +38,7 @@ input {
   background-color: #ccc;
   color: #333;
 }
-
+/*botão de adicionar*/
 button.Add {
   padding: 10px 15px;
   margin-top: 10px;
@@ -49,8 +49,13 @@ button.Add {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
+/*Botão de Apagar*/
+button.btnApagar {
+  margin-top: 10px;
+}
 
-button {
+/*botão de filtro padrão*/
+.filtro {
   padding: 10px 15px;
   margin-top: 10px;
   margin-right: 10px;
@@ -58,6 +63,18 @@ button {
   color: white;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/*botão de filtro selecionado*/
+.filtro-selecionado {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-right: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
