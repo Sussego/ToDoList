@@ -3,13 +3,19 @@ import './App.css';
 
 function App() {
   const [tarefas,setTarefas] = useState([]);
-  const [novaTarefa, setNovaTarefa] = useState('');
+  const [novaTarefa, setNovaTarefa] = useState("");
 
   const adicionarTarefa = () =>{
     if (novaTarefa.trim() !== ''){
-      setTarefas([...tarefas, novaTarefa]);
-      setNovaTarefa('');
+      setTarefas([...tarefas, {texto: novaTarefa, concluida:false}]);
+      setNovaTarefa("");
     }
+  };
+
+  const marcarConcluida = (index)=>{
+    const novasTarefas = [...tarefas];
+    novasTarefas[index].concluida = !novasTarefas[index].concluida; //inversão
+    setTarefas(novasTarefas);
   };
 
   const removerTarefa = (index)=>{
@@ -32,7 +38,14 @@ function App() {
 
         <ul>
           {tarefas.map((tarefa, index)=> (
-            <li key={index} onClick={()=>removerTarefa(index)} style={{cursor:'pointer'}}>{tarefa}</li>
+            <li
+              key={index}
+              onClick={()=>marcarConcluida(index)}
+              style={{cursor:'pointer', 
+                textDecoration:tarefa.concluida ? "line-through" : "none", 
+                color: tarefa.concluida ? "#888" : "#000"}}>
+              {tarefa.texto}
+            </li>
           ))}
         </ul>
     </div>
