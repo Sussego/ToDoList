@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './App.css';
 
 function App() {
   const [tarefas,setTarefas] = useState([]);
@@ -18,7 +19,7 @@ function App() {
 
 
   return (
-    <div style={{textAlign: 'center', marginTop: '50px', display: 'flex', justifyContent:'center', alignItems:'center'}}>
+    <div style={{textAlign: 'center', marginTop: '50px'}}>
       <h1>Lista de Tarefas</h1>
         <input
           type="text"
@@ -27,7 +28,7 @@ function App() {
           onChange={(e)=>setNovaTarefa(e.target.value)}
         />
         
-        <button on onClick={adicionarTarefa}>Adicionar</button>
+        <button onClick={adicionarTarefa}>Adicionar</button>
 
         <ul>
           {tarefas.map((tarefa, index)=> (
